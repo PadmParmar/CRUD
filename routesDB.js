@@ -104,7 +104,6 @@ router.post('/add', function(req, res, next) {
         }
     });
 });
-
 router.delete('/:id', function(req, res, next) {
     console.log("inside delete method...");
     PDF.deletePdf(req.params.id, function(err, count) {
@@ -118,7 +117,6 @@ router.delete('/:id', function(req, res, next) {
         }
     });
 });
-
 router.put('/:id', function(req, res, next) {
     console.log("inside put method....");
     PDF.updatePdf(req.params.id,req.body,function(err, rows) {
