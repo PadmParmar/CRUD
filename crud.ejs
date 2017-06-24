@@ -1,0 +1,104 @@
+<html>
+<head>
+    <title>CRUD</title>
+    <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+    *{
+      color: white;
+    }
+    a{
+      text-decoration: none;
+      color: white;
+    }
+    .button{
+      width: 100%;
+      border: 0;
+    }
+    .addbutton{
+      background-color: rgba(255,140,0,0.8);
+    }
+    .deletebutton{
+      background-color: red;
+    }
+    .editbutton{
+      background-color: blue;
+    }
+    #divBtnAdd{
+      margin-top: 2%;
+      margin-left: 5px;
+    }
+    #divMain{
+      background-color: #bb8fbd;
+    }
+    #divContainer{
+        margin-top: 5%;
+    }
+    .border_radius{
+        border-radius: 5px;
+    }
+    .box_shadow{
+      box-shadow: 0px 2px 5px black;
+    }
+    .text_shadow{
+      text-shadow: 0px 2px 5px black;
+    }
+    </style>
+</head>
+<body>
+  <div id="divContainer" class="container box_shadow border_radius">
+    <div id="divMain" class="row">
+
+      <div class="row">
+        <div id="divBtnAdd" class="col-lg-1 col-md-1 ">
+          <a href="/addPost"><button class="box_shadow addbutton button border_radius">Add</button></a>
+        </div>
+      </div>
+      <div class="row">
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+        <table  class="table">
+          <thead>
+            <tr>
+              <th class="text_shadow">ID</th>
+              <th class="text_shadow">NAME</th>
+              <th class="text_shadow">BOOKNAME</th>
+              <th class="text_shadow">PATH</th>
+              <th class="text_shadow">EDIT</th>
+              <th class="text_shadow">DELETE</th>
+            </tr>
+          </thead>
+          <tbody>
+              <% for(var i=0;i<data.length;i++){ %>
+              <tr>
+                <td><%=data[i].id%></td>
+                <td><%=data[i].name%></td>
+                <td><%=data[i].bookname%></td>
+                <td><%=data[i].path%></td>
+                <td>
+                  <form action="" method="PUT">
+                    <button class="box_shadow editbutton button border_radius">edit</button>
+                  </form>
+                </td>
+                <td>
+                  <form action=/delete<%=data[i].id%> method="DELETE">
+                    <button class="box_shadow deletebutton button border_radius">delete</button>
+                  </form>
+                </td>
+              </tr>
+              <% } %>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

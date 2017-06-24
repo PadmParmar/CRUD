@@ -5,7 +5,7 @@ console.log("Inside routesDB...");
 
 router.get('/homepage',function(req,res){
   console.log("Inside Home Page");
-  res.sendFile(__dirname + '/crud.html');
+  res.render('../crud.ejs');
 });
 
 router.get('/addPost',function(req,res){
@@ -15,7 +15,6 @@ router.get('/addPost',function(req,res){
 
 /*CRUD using GET method*/
 router.get('/add', function(req, res, next) {
-
     console.log("inside get method...");
     var value={id:req.query.id,bookname:req.query.bookname,name:req.query.name,path:req.query.path};
     console.log(value);
@@ -24,7 +23,7 @@ router.get('/add', function(req, res, next) {
         if (err) {
             res.json(err);
         } else {
-            res.sendFile(__dirname + '/crud.html');
+            res.sendFile(__dirname + '/crud.ejs');
         }
     });
 });
@@ -43,27 +42,43 @@ router.get('/update', function(req, res, next) {
     });
 });
 
-router.get('/get:id?', function(req, res, next) {
+router.get('/getId:id?', function(req, res, next) {
     console.log("inside get method...");
     if (req.params.id) {
         console.log("inside get id method...");
         PDF.getPdfById(req.params.id, function(err, rows) {
             if (err) {
-                res.json(err);
-            } else {
-                res.json(rows);
-            }
-        });
-    } else {
-        console.log("inside getAllId Method...");
-        PDF.getAllPdfs(function(err, rows) {
-            if (err) {
-                res.json(err);
+                console.log(err);
             } else {
                 res.json(rows);
             }
         });
     }
+});
+
+router.get('/getAll', function(req, res, next) {
+    console.log("inside getAll Method...");
+    PDF.getAllPdfs(function(err, rows) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('../crud.ejs',{data:rows});
+        }
+    });
+});
+
+router.get('/delete:id?', function(req, res, next) {
+    console.log("inside delete method...");
+    PDF.deletePdf(req.params.id, function(err, count) {
+      console.log("inside deletePdf method...");
+        if (err) {
+            console.log(err);
+        } else {
+            PDF.getAllPdfs(function(err, rows) {
+                res.render('../crud.ejs',{data:rows});
+            });
+        }
+    });
 });
 
 router.post('/add', function(req, res, next) {
@@ -72,13 +87,15 @@ router.post('/add', function(req, res, next) {
     PDF.addPdf(req.body, function(err, rows) {
       console.log("inside post addPdf method...");
         if (err) {
-            res.json(err);
+            console.log(err);
         } else {
-            //res.json(req.body); //or return count for 1 & 0
-            res.sendFile(__dirname + '/crud.html');
+            PDF.getAllPdfs(function(err, rows) {
+                res.render('../crud.ejs',{data:rows});
+            });
         }
     });
 });
+
 router.delete('/:id', function(req, res, next) {
     console.log("inside delete method...");
     PDF.deletePdf(req.params.id, function(err, count) {
@@ -86,10 +103,13 @@ router.delete('/:id', function(req, res, next) {
         if (err) {
             res.json(err);
         } else {
-            res.json(count);
+            PDF.getAllPdfs(function(err, rows) {
+                 res.render('../crud.ejs',{data:rows});
+            });
         }
     });
 });
+
 router.put('/:id', function(req, res, next) {
     console.log("inside put method....");
     PDF.updatePdf(req.params.id,req.body,function(err, rows) {
