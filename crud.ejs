@@ -82,12 +82,12 @@
                 <td><%=data[i].bookname%></td>
                 <td><%=data[i].path%></td>
                 <td>
-                  <form action="" method="PUT">
+                  <form action=/getId<%=data[i].id%> method="GET">
                     <button class="box_shadow editbutton button border_radius">edit</button>
                   </form>
                 </td>
                 <td>
-                  <form action=/delete<%=data[i].id%> method="DELETE">
+                  <form action=/delete<%=data[i].id%> method="GET">
                     <button class="box_shadow deletebutton button border_radius">delete</button>
                   </form>
                 </td>

@@ -19,7 +19,8 @@
     "nodemon": "^1.11.0"
   },
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start" : "crud.ejs"
   },
   "author": "PADM $ MP",
   "license": "ISC"
