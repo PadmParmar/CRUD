@@ -91,8 +91,6 @@ router.post('/add', function(req, res, next) {
         }
     });
 });
-
-
 /*router.get('/add', function(req, res, next) {
     console.log("inside get method...");
     var value={id:req.query.id,bookname:req.query.bookname,name:req.query.name,path:req.query.path};
@@ -133,6 +131,4 @@ router.put('/:id', function(req, res, next) {
     });
 });
 */
-
 module.exports.router = router;
-
