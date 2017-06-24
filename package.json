@@ -7,6 +7,7 @@
     "body-parser": "^1.17.2",
     "ejs": "^2.5.6",
     "express": "^4.15.3",
+    "getter-setter": "^0.2.1",
     "http": "^0.0.0",
     "mysql": "^2.13.0",
     "mysql2": "^1.3.5",
@@ -20,7 +21,7 @@
   },
   "scripts": {
     "dev": "nodemon server.js",
-    "start" : "crud.ejs"
+    "start": "crud.ejs"
   },
   "author": "PADM $ MP",
   "license": "ISC"
