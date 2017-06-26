@@ -20,10 +20,7 @@ router.get('/addPost',function(req,res){
 router.get('/update', function(req, res, next) {
     console.log("inside get method...");
     var columns = ['name','bookname','path'];
-    /*user.setUser(req.query.name,req.query.bookname,req.query.path);
-    console.log("User :"+user.getUserWithoutId);
-    user.getUser();*/
-
+    
     var data= [req.query.name,req.query.bookname,req.query.path,req.query.id]; 
     
     console.log(data);
@@ -96,42 +93,4 @@ router.post('/add', function(req, res, next) {
         }
     });
 });
-/*router.get('/add', function(req, res, next) {
-    console.log("inside get method...");
-    var value={id:req.query.id,bookname:req.query.bookname,name:req.query.name,path:req.query.path};
-    console.log(value);
-    PDF.addPdfGet(value, function(err, rows) {
-        console.log("inside addPdfGet method...");
-        if (err) {
-            res.json(err);
-        } else {
-            res.render('../crud.ejs');
-        }
-    });
-});
-router.delete('/:id', function(req, res, next) {
-    console.log("inside delete method...");
-    PDF.deletePdf(req.params.id, function(err, count) {
-      console.log("inside deletePdf method...");
-        if (err) {
-            res.json(err);
-        } else {
-            PDF.getAllPdfs(function(err, rows) {
-                 res.render('../crud.ejs',{data:rows});
-            });
-        }
-    });
-});
-router.put('/:id', function(req, res, next) {
-    console.log("inside put method....");
-    PDF.updatePdf(req.params.id,req.body,function(err, rows) {
-        console.log("inside updatePdf method...");
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(rows);
-        }
-    });
-});
-*/
 module.exports.router = router;
