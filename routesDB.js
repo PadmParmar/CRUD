@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var PDF=require("./PDF");
 var bodyParser=require('body-parser');
+var user=require('./model/user');
 
 console.log("Inside routesDB...");
 
@@ -19,7 +20,11 @@ router.get('/addPost',function(req,res){
 router.get('/update', function(req, res, next) {
     console.log("inside get method...");
     var columns = ['name','bookname','path'];
-    var data= [req.query.name,req.query.bookname,req.query.path,req.query.id];
+    /*user.setUser(req.query.name,req.query.bookname,req.query.path);
+    console.log("User :"+user.getUserWithoutId);
+    user.getUser();*/
+
+    var data= [req.query.name,req.query.bookname,req.query.path,req.query.id]; 
     
     console.log(data);
 
