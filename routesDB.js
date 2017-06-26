@@ -8,12 +8,12 @@ console.log("Inside routesDB...");
 
 router.get('/homepage',function(req,res){
   console.log("Inside Home Page");
-  res.render('../crud.ejs');
+  res.render('crud.ejs');
 });
 
 router.get('/addPost',function(req,res){
   console.log("Inside addPost Page");
-  res.sendFile(__dirname + '/addPost.html');
+  res.render('addPost.ejs');
 });
 
 /*CRUD using GET method*/
@@ -35,7 +35,7 @@ router.get('/update', function(req, res, next) {
         } else {
             console.log("update complete...");
             PDF.getAllPdfs(function(err, rows) {
-                res.render('../crud.ejs',{data:rows});
+                res.render('crud.ejs',{data:rows});
             });
         }
     });
@@ -51,7 +51,7 @@ router.get('/getId:id?', function(req, res, next) {
                 console.log(err);
             } else {
                 //res.json(rows);
-                res.render('../update.ejs',{data:rows});    
+                res.render('update.ejs',{data:rows});    
             }
         });
     }
@@ -63,7 +63,7 @@ router.get('/getAll', function(req, res, next) {
         if (err) {
             console.log(err);
         } else {
-            res.render('../crud.ejs',{data:rows});
+            res.render('crud.ejs',{data:rows});
         }
     });
 });
@@ -76,7 +76,7 @@ router.get('/delete:id?', function(req, res, next) {
             console.log(err);
         } else {
             PDF.getAllPdfs(function(err, rows) {
-                res.render('../crud.ejs',{data:rows});
+                res.render('crud.ejs',{data:rows});
             });
         }
     });
@@ -91,7 +91,7 @@ router.post('/add', function(req, res, next) {
             console.log(err);
         } else {
             PDF.getAllPdfs(function(err, rows) {
-                res.render('../crud.ejs',{data:rows});
+                res.render('crud.ejs',{data:rows});
             });
         }
     });
