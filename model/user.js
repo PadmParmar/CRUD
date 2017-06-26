@@ -16,6 +16,7 @@ exports.setPath = function (path) {
     this.path = path;
 };
 
+
 exports.setUser = function (name,bookname,path) {
     this.name = name;
     this.bookname = bookname;
